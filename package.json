@@ -1,0 +1,20 @@
+{
+  "name": "onedotjs",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "packages/*",
+    "examples/*",
+    "tools/*"
+  ],
+  "scripts": {
+    "build": "pnpm -r run build",
+    "test": "pnpm -r run test",
+    "lint": "pnpm -r run lint"
+  },
+  "devDependencies": {
+    "husky": "^8.0.0",
+    "lint-staged": "^14.0.0",
+    "pnpm": "^8.0.0"
+  }
+}
