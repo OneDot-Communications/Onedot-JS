@@ -1,10 +1,48 @@
 {
   "name": "@onedot/cli",
-  "version": "0.0.1",
-  "bin": {"onedot": "dist/index.js"},
+  "version": "1.0.0",
+  "description": "Command-line interface for ONEDOT Framework",
+  "bin": {
+    "onedot": "dist/index.js"
+  },
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "scripts": {"build": "tsc -p tsconfig.json"},
-  "license": "MIT"
+  "files": [
+    "dist",
+    "templates"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json && npm run copy-templates",
+    "copy-templates": "cp -r templates dist/",
+    "dev": "tsc -p tsconfig.json --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "commander": "^11.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  },
+  "keywords": [
+    "onedot",
+    "cli",
+    "framework",
+    "react",
+    "vite",
+    "bundler"
+  ],
+  "author": "ONEDOT Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/onedotjs/onedot.git",
+    "directory": "packages/cli"
+  },
+  "homepage": "https://onedotjs.dev",
+  "bugs": {
+    "url": "https://github.com/onedotjs/onedot/issues"
+  }
 }
