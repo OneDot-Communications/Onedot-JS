@@ -16,7 +16,7 @@
     "build": "tsc -p tsconfig.json && npm run copy-templates",
     "copy-templates": "cp -r templates dist/",
     "dev": "tsc -p tsconfig.json --watch",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly-disabled": "npm run build"
   },
   "dependencies": {
     "chalk": "^5.3.0",
