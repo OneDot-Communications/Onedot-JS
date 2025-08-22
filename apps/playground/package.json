@@ -1,0 +1,5 @@
+{
+  "name": "onedot-playground",
+  "private": true,
+  "scripts": {"dev": "onedot dev", "build": "onedot build"}
+}

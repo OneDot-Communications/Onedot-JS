@@ -1,0 +1,22 @@
+{
+  "name": "@onedot/native",
+  "version": "1.0.0",
+  "description": "ONEDOT-JS Native Renderer with Skia GPU Pipeline and JSI Bridge",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "build:native": "cargo build --release",
+    "clean": "rimraf dist && cargo clean"
+  },
+  "dependencies": {
+    "@onedot/core": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "files": ["dist", "native", "Cargo.toml"],
+  "repository": "https://github.com/onedot-js/onedot",
+  "license": "MIT",
+  "keywords": ["native", "skia", "jsi", "gpu", "renderer", "mobile", "desktop"]
+}

@@ -1,0 +1,22 @@
+{
+  "name": "@onedot/aot",
+  "version": "1.0.0",
+  "description": "ONEDOT-JS Ahead-of-Time Compilation Pipeline",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "build:compiler": "cargo build --release"
+  },
+  "dependencies": {
+    "@onedot/core": "workspace:*",
+    "@onedot/bundler": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "files": ["dist", "compiler", "Cargo.toml"],
+  "repository": "https://github.com/onedot-js/onedot",
+  "license": "MIT",
+  "keywords": ["aot", "compilation", "optimization", "hermes", "bytecode"]
+}

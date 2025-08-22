@@ -1,0 +1,20 @@
+{
+  "name": "@onedot/security",
+  "version": "1.0.0",
+  "description": "ONEDOT-JS Security Policy Generation and Sandbox Management",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@onedot/core": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "files": ["dist"],
+  "repository": "https://github.com/onedot-js/onedot",
+  "license": "MIT",
+  "keywords": ["security", "csp", "sandbox", "policy", "nonce"]
+}
