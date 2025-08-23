@@ -1,6 +1,6 @@
 {
   "name": "@onedot/docs",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "Documentation generator and tools for ONEDOT-JS framework",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -18,7 +18,7 @@
     "preview": "npm run build && npm run serve"
   },
   "dependencies": {
-    "@onedot/core": "^1.0.13",
+    "@onedot/core": "^1.0.14",
     "chokidar": "^3.5.3",
     "express": "^4.18.2",
     "front-matter": "^4.0.2",
@@ -66,5 +66,5 @@
   "engines": {
     "node": ">=16.0.0"
   },
-  "gitHead": "6819c4a3c456afc4c23a6735e310309fa0c1e7a7"
+  "gitHead": "f5a99c33b512b1db09e5f2d35e2e6a854b3d194e"
 }

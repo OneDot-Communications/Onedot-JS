@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.12.2](https://github.com/OneDot-Communications/Onedot-JS/compare/@onedot-js/cli@1.12.1...@onedot-js/cli@1.12.2) (2025-08-23)
+
+**Note:** Version bump only for package @onedot-js/cli
+
+
+
+
+
 ## [1.12.1](https://github.com/OneDot-Communications/Onedot-JS/compare/@onedot-js/cli@1.12.0...@onedot-js/cli@1.12.1) (2025-08-23)
 
 **Note:** Version bump only for package @onedot-js/cli

@@ -1,6 +1,6 @@
 {
   "name": "@onedot/plugins",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "Plugin system for ONEDOT-JS framework",
   "main": "index.js",
   "types": "index.d.ts",
@@ -21,8 +21,8 @@
   "author": "ONEDOT-JS Team",
   "license": "MIT",
   "dependencies": {
-    "@onedot/core": "^1.0.13",
-    "@onedot/performance": "^1.0.13"
+    "@onedot/core": "^1.0.14",
+    "@onedot/performance": "^1.0.14"
   },
   "devDependencies": {
     "@types/jest": "^29.0.0",
@@ -51,5 +51,5 @@
     "url": "https://github.com/onedot-js/onedot-js/issues"
   },
   "homepage": "https://onedot-js.dev",
-  "gitHead": "6819c4a3c456afc4c23a6735e310309fa0c1e7a7"
+  "gitHead": "f5a99c33b512b1db09e5f2d35e2e6a854b3d194e"
 }
