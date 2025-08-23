@@ -1,0 +1,52 @@
+{
+  "name": "@onedot/devtools",
+  "version": "1.0.0",
+  "description": "Developer tools for ONEDOT-JS framework",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "lint": "eslint src --ext .ts",
+    "clean": "rimraf dist"
+  },
+  "dependencies": {
+    "@onedot/core": "^1.0.0",
+    "ws": "^8.13.0",
+    "chokidar": "^3.5.3",
+    "source-map": "^0.7.4",
+    "express": "^4.18.2",
+    "open": "^8.4.2"
+  },
+  "devDependencies": {
+    "@types/node": "^18.15.0",
+    "@types/ws": "^8.5.5",
+    "@types/express": "^4.17.17",
+    "typescript": "^5.0.0",
+    "jest": "^29.5.0",
+    "@types/jest": "^29.5.0",
+    "rimraf": "^4.4.0",
+    "eslint": "^8.39.0",
+    "@typescript-eslint/eslint-plugin": "^5.59.0",
+    "@typescript-eslint/parser": "^5.59.0"
+  },
+  "author": "ONEDOT-JS Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/onedot-js/onedot-js.git",
+    "directory": "packages/devtools"
+  },
+  "keywords": [
+    "onedot-js",
+    "devtools",
+    "debugger",
+    "profiler",
+    "hmr",
+    "testing"
+  ],
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

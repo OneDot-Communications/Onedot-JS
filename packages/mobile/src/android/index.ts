@@ -1,0 +1,1 @@
+export { AndroidPlatform } from './android';

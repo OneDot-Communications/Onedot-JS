@@ -1,9 +1,45 @@
 {
   "name": "@onedot/core",
-  "version": "0.0.1",
-  "type": "module",
+  "version": "1.0.0",
+  "description": "Core functionality for ONEDOT-JS framework",
   "main": "dist/index.js",
+  "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
-  "scripts": {"build": "tsc -p tsconfig.json"},
-  "license": "MIT"
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "lint": "eslint src --ext .ts",
+    "clean": "rimraf dist"
+  },
+  "dependencies": {
+    "tslib": "^2.5.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.15.0",
+    "typescript": "^5.0.0",
+    "jest": "^29.5.0",
+    "@types/jest": "^29.5.0",
+    "rimraf": "^4.4.0",
+    "eslint": "^8.39.0",
+    "@typescript-eslint/eslint-plugin": "^5.59.0",
+    "@typescript-eslint/parser": "^5.59.0"
+  },
+  "author": "ONEDOT-JS Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/onedot-js/onedot-js.git",
+    "directory": "packages/core"
+  },
+  "keywords": [
+    "onedot-js",
+    "framework",
+    "core",
+    "reactivity",
+    "state-management",
+    "components"
+  ],
+  "engines": {
+    "node": ">=16.0.0"
+  }
 }

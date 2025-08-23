@@ -1,0 +1,27 @@
+{
+  "name": "onedot-ecommerce-example",
+  "version": "1.0.0",
+  "description": "E-commerce app example using ONEDOT-JS",
+  "main": "src/index.ts",
+  "scripts": {
+    "start": "onedot dev",
+    "build": "onedot build",
+    "test": "onedot test"
+  },
+  "keywords": [
+    "onedot-js",
+    "ecommerce",
+    "example"
+  ],
+  "author": "ONEDOT-JS Team",
+  "license": "MIT",
+  "dependencies": {
+    "@onedot/core": "^1.0.0",
+    "@onedot/web": "^1.0.0",
+    "@onedot/router": "^1.0.0"
+  },
+  "devDependencies": {
+    "@onedot/cli": "^1.0.0",
+    "@onedot/bundler": "^1.0.0"
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "name": "@onedot/performance",
+  "version": "1.0.0",
+  "description": "Performance optimization and monitoring tools for ONEDOT-JS framework",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "lint": "eslint src --ext .ts,.js",
+    "clean": "rimraf dist",
+    "prebuild": "npm run clean",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "onedot",
+    "performance",
+    "optimization",
+    "profiling",
+    "metrics"
+  ],
+  "author": "ONEDOT-JS Team",
+  "license": "MIT",
+  "dependencies": {
+    "@onedot/core": "^1.0.0",
+    "@onedot/native": "^1.0.0",
+    "@onedot/rendering": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "typescript": "^4.9.0",
+    "jest": "^29.0.0",
+    "@types/jest": "^29.0.0",
+    "ts-jest": "^29.0.0",
+    "eslint": "^8.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
+    "rimraf": "^3.0.0"
+  },
+  "peerDependencies": {
+    "@onedot/core": "^1.0.0",
+    "@onedot/native": "^1.0.0",
+    "@onedot/rendering": "^1.0.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/onedot-js/onedot-js.git",
+    "directory": "packages/performance"
+  },
+  "bugs": {
+    "url": "https://github.com/onedot-js/onedot-js/issues"
+  },
+  "homepage": "https://onedot-js.dev"
+}

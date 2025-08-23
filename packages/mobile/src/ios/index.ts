@@ -1,0 +1,1 @@
+export { IOSPlatform } from './ios';

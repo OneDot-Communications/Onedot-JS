@@ -1,26 +1,41 @@
 {
-  "files": [],
-  "references": [
-    { "path": "packages/core" },
-    { "path": "packages/runtime" },
-    { "path": "packages/cli" },
-    { "path": "packages/plugins" },
-  { "path": "packages/tester" },
-  { "path": "packages/style" },
-  { "path": "packages/profiler" },
-  { "path": "packages/docs" }
-  ],
   "compilerOptions": {
-    "composite": true,
+    "target": "ES2020",
+    "module": "commonjs",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "declaration": true,
+    "outDir": "./dist",
+    "rootDir": "./",
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "baseUrl": ".",
     "paths": {
-      "@onedot/core": ["packages/core/src/index.ts"],
-  "@onedot/runtime": ["packages/runtime/src/index.ts"],
-  "@onedot/plugins": ["packages/plugins/src/index.ts"],
-  "@onedot/style": ["packages/style/src/index.ts"],
-  "@onedot/profiler": ["packages/profiler/src/index.ts"],
-  "@onedot/tester": ["packages/tester/src/index.ts"],
-  "@onedot/docs": ["packages/docs/src/generator.ts"]
+      "@onedot/*": ["packages/*/src"]
     }
-  }
+  },
+  "include": [
+    "packages/*/src",
+    "apps/*/src",
+    "examples/*/src",
+    "index.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "**/*.test.ts"
+  ]
 }

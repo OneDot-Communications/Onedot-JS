@@ -1,361 +1,214 @@
-// ONEDOT Framework Playground Application
-import { h, render, useState, useEffect } from '../../packages/core/src/index.js';
-import { webHost } from '../../packages/runtime/src/webHost.js';
-import { css } from '../../packages/style/src/index.js';
-import { mark, withMeasure } from '../../packages/profiler/src/index.js';
+/**
+ * ONEDOT-JS Playground Application
+ * Demonstrates framework capabilities
+ */
+import {
+  BaseComponent,
+  bootstrap,
+  Component,
+  Container,
+  Injectable,
+  ReactiveState,
+  Router
+} from '../../../packages/core/src';
 
-// Performance monitoring
-mark('app-start');
+// Example Service
+@Injectable()
+export class ApiService {
+  private baseUrl = 'https://api.example.com';
 
-// Styled components with CSS-in-JS
-const styles = {
-  app: css({
-    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
-    maxWidth: '800px',
-    margin: '0 auto',
-    padding: '20px',
-    lineHeight: '1.6'
-  }),
-  
-  header: css({
-    textAlign: 'center',
-    marginBottom: '40px',
-    '& h1': {
-      color: '#2563eb',
-      fontSize: '3rem',
-      fontWeight: '700',
-      margin: '0 0 10px 0'
-    },
-    '& p': {
-      color: '#64748b',
-      fontSize: '1.2rem',
-      margin: '0'
-    }
-  }),
-  
-  section: css({
-    marginBottom: '40px',
-    padding: '20px',
-    backgroundColor: '#f8fafc',
-    borderRadius: '8px',
-    border: '1px solid #e2e8f0'
-  }),
-  
-  counter: css({
-    display: 'flex',
-    alignItems: 'center',
-    gap: '20px',
-    '& .count': {
-      fontSize: '2rem',
-      fontWeight: 'bold',
-      color: '#1e40af'
-    }
-  }),
-  
-  button: css({
-    padding: '12px 24px',
-    backgroundColor: '#3b82f6',
-    color: 'white',
-    border: 'none',
-    borderRadius: '6px',
-    fontSize: '16px',
-    fontWeight: '500',
-    cursor: 'pointer',
-    transition: 'all 0.2s',
-    '&:hover': {
-      backgroundColor: '#2563eb',
-      transform: 'translateY(-1px)'
-    },
-    '&:active': {
-      transform: 'translateY(0)'
-    }
-  }),
-  
-  todoList: css({
-    '& input': {
-      width: '100%',
-      padding: '12px',
-      border: '1px solid #d1d5db',
-      borderRadius: '6px',
-      fontSize: '16px',
-      marginBottom: '15px'
-    },
-    '& ul': {
-      listStyle: 'none',
-      padding: '0',
-      margin: '0'
-    },
-    '& li': {
-      display: 'flex',
-      alignItems: 'center',
-      gap: '10px',
-      padding: '8px 0',
-      borderBottom: '1px solid #e5e7eb'
-    },
-    '& .todo-text': {
-      flex: '1'
-    },
-    '& .todo-done': {
-      textDecoration: 'line-through',
-      color: '#6b7280'
-    }
-  })
-};
+  async fetchData(endpoint: string): Promise<any> {
+    console.log(`Fetching data from ${this.baseUrl}/${endpoint}`);
 
-// Counter Component
-function Counter() {
-  const [count, setCount] = useState(0);
-  
-  const increment = () => withMeasure('counter-increment', () => {
-    setCount(count + 1);
-  });
-  
-  const decrement = () => withMeasure('counter-decrement', () => {
-    setCount(count - 1);
-  });
-  
-  return h('div', { className: styles.counter }, 
-    h('button', { className: styles.button, onClick: decrement }, '−'),
-    h('span', { className: 'count' }, count),
-    h('button', { className: styles.button, onClick: increment }, '+')
-  );
-}
-
-// Todo Item Component
-function TodoItem({ todo, onToggle, onRemove }: any) {
-  return h('li', {},
-    h('input', {
-      type: 'checkbox',
-      checked: todo.done,
-      onChange: () => onToggle(todo.id)
-    }),
-    h('span', {
-      className: `todo-text ${todo.done ? 'todo-done' : ''}`
-    }, todo.text),
-    h('button', {
-      className: styles.button,
-      onClick: () => onRemove(todo.id)
-    }, 'Remove')
-  );
-}
-
-// Todo List Component
-function TodoList() {
-  const [todos, setTodos] = useState([
-    { id: 1, text: 'Learn ONEDOT Framework', done: false },
-    { id: 2, text: 'Build amazing apps', done: false }
-  ]);
-  const [newTodo, setNewTodo] = useState('');
-  
-  const addTodo = () => {
-    if (newTodo.trim()) {
-      const todo = {
-        id: Date.now(),
-        text: newTodo.trim(),
-        done: false
-      };
-      setTodos([...todos, todo]);
-      setNewTodo('');
-    }
-  };
-  
-  const toggleTodo = (id: number) => {
-    setTodos(todos.map(todo => 
-      todo.id === id ? { ...todo, done: !todo.done } : todo
-    ));
-  };
-  
-  const removeTodo = (id: number) => {
-    setTodos(todos.filter(todo => todo.id !== id));
-  };
-  
-  const handleKeyPress = (e: KeyboardEvent) => {
-    if (e.key === 'Enter') {
-      addTodo();
-    }
-  };
-  
-  return h('div', { className: styles.todoList },
-    h('input', {
-      type: 'text',
-      placeholder: 'Add new todo...',
-      value: newTodo,
-      onInput: (e: any) => setNewTodo(e.target.value),
-      onKeyPress: handleKeyPress
-    }),
-    h('button', { className: styles.button, onClick: addTodo }, 'Add Todo'),
-    h('ul', {},
-      ...todos.map(todo => 
-        h(TodoItem, {
-          key: todo.id,
-          todo,
-          onToggle: toggleTodo,
-          onRemove: removeTodo
-        })
-      )
-    )
-  );
-}
-
-// Timer Component with useEffect
-function Timer() {
-  const [seconds, setSeconds] = useState(0);
-  const [isRunning, setIsRunning] = useState(false);
-  
-  useEffect(() => {
-    let interval: any = null;
-    if (isRunning) {
-      interval = setInterval(() => {
-        setSeconds(s => s + 1);
+    // Simulate API call
+    return new Promise(resolve => {
+      setTimeout(() => {
+        resolve({
+          id: Math.random().toString(36),
+          timestamp: new Date().toISOString(),
+          data: `Mock data from ${endpoint}`
+        });
       }, 1000);
-    } else if (interval) {
-      clearInterval(interval);
-    }
-    
-    return () => {
-      if (interval) clearInterval(interval);
-    };
-  });
-  
-  const toggle = () => setIsRunning(!isRunning);
-  const reset = () => {
-    setSeconds(0);
-    setIsRunning(false);
-  };
-  
-  const formatTime = (secs: number) => {
-    const mins = Math.floor(secs / 60);
-    const remainingSecs = secs % 60;
-    return `${mins.toString().padStart(2, '0')}:${remainingSecs.toString().padStart(2, '0')}`;
-  };
-  
-  return h('div', { className: styles.counter },
-    h('div', { className: 'count' }, formatTime(seconds)),
-    h('button', { className: styles.button, onClick: toggle }, 
-      isRunning ? 'Pause' : 'Start'
-    ),
-    h('button', { className: styles.button, onClick: reset }, 'Reset')
-  );
-}
-
-// Feature showcase component
-function FeatureShowcase() {
-  const [activeTab, setActiveTab] = useState('counter');
-  
-  const tabs = [
-    { id: 'counter', label: 'Counter', component: Counter },
-    { id: 'todos', label: 'Todo List', component: TodoList },
-    { id: 'timer', label: 'Timer', component: Timer }
-  ];
-  
-  const activeComponent = tabs.find(tab => tab.id === activeTab)?.component || Counter;
-  
-  return h('div', {},
-    h('div', { 
-      style: 'display: flex; gap: 10px; margin-bottom: 20px; border-bottom: 1px solid #e5e7eb; padding-bottom: 10px;' 
-    },
-      ...tabs.map(tab =>
-        h('button', {
-          className: styles.button,
-          style: activeTab === tab.id ? 'background-color: #1d4ed8;' : 'background-color: #9ca3af;',
-          onClick: () => setActiveTab(tab.id)
-        }, tab.label)
-      )
-    ),
-    h(activeComponent, {})
-  );
-}
-
-// Main App Component
-function App() {
-  const [mounted, setMounted] = useState(false);
-  
-  useEffect(() => {
-    mark('app-mounted');
-    setMounted(true);
-    
-    // Log framework info
-    console.log('🚀 ONEDOT Framework Playground');
-    console.log('Framework features:');
-    console.log('✅ Reactive state management');
-    console.log('✅ Component system with hooks');
-    console.log('✅ CSS-in-JS styling');
-    console.log('✅ Performance profiling');
-    console.log('✅ Server-side rendering ready');
-  });
-  
-  if (!mounted) {
-    return h('div', { className: styles.app }, 
-      h('div', {}, 'Loading ONEDOT Framework...')
-    );
+    });
   }
-  
-  return h('div', { className: styles.app },
-    h('header', { className: styles.header },
-      h('h1', {}, '🔥 ONEDOT Framework'),
-      h('p', {}, 'Next-generation reactive JavaScript framework')
-    ),
-    
-    h('section', { className: styles.section },
-      h('h2', {}, '🎮 Interactive Demo'),
-      h('p', {}, 'Explore the framework features with these interactive examples:'),
-      h(FeatureShowcase, {})
-    ),
-    
-    h('section', { className: styles.section },
-      h('h2', {}, '⚡ Performance'),
-      h('p', {}, 'Built for speed with fine-grained reactivity and minimal overhead.'),
-      h('p', {}, 'Check the browser console for performance markers.')
-    ),
-    
-    h('section', { className: styles.section },
-      h('h2', {}, '🛠️ Features'),
-      h('ul', {},
-        h('li', {}, '📦 Zero-config bundling'),
-        h('li', {}, '🔄 Hot module replacement'),
-        h('li', {}, '🎨 CSS-in-JS styling'),
-        h('li', {}, '📊 Built-in profiling'),
-        h('li', {}, '🌐 SSR/SSG support'),
-        h('li', {}, '🔒 Secure sandbox execution'),
-        h('li', {}, '📱 Edge runtime compatible')
-      )
-    ),
-    
-    h('footer', { 
-      style: 'text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #e5e7eb; color: #6b7280;' 
-    },
-      h('p', {}, '© 2024 ONEDOT Framework - Built for the modern web')
-    )
-  );
 }
 
-// Performance tracking
-mark('app-ready');
-
-// Mount the application
-const appElement = document.getElementById('app');
-if (appElement) {
-  withMeasure('app-render', () => {
-    render(h(App, {}), webHost as any, appElement);
-  });
-  mark('app-complete');
-} else {
-  console.error('❌ Could not find #app element');
-}
-
-// Development tools
-if (typeof window !== 'undefined') {
-  (window as any).__ONEDOT_PLAYGROUND__ = {
-    version: '1.0.0',
-    performance: {
-      marks: () => performance.getEntriesByType('mark'),
-      measures: () => performance.getEntriesByType('measure')
-    },
-    framework: {
-      name: 'ONEDOT',
-      components: ['Counter', 'TodoList', 'Timer', 'FeatureShowcase', 'App']
+// Example Component
+@Component({
+  selector: 'app-hello',
+  template: `
+    <div class="hello-component">
+      <h1>{{title}}</h1>
+      <p>{{message}}</p>
+      <button onclick="{{updateCounter}}">Count: {{counter}}</button>
+    </div>
+  `,
+  styles: [`
+    .hello-component {
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background: #f9f9f9;
     }
-  };
-  
-  console.log('🔧 Development tools available at window.__ONEDOT_PLAYGROUND__');
+  `]
+})
+export class HelloComponent extends BaseComponent {
+  private counter = new ReactiveState(0);
+  private title = 'Hello ONEDOT-JS!';
+  private message = 'Welcome to the next-generation TypeScript framework';
+
+  constructor(private apiService: ApiService) {
+    super();
+    this.loadData();
+  }
+
+  render(): string {
+    return `
+      <div class="hello-component">
+        <h1>${this.title}</h1>
+        <p>${this.message}</p>
+        <button onclick="this.updateCounter()">Count: ${this.counter.get()}</button>
+        <div id="data-display"></div>
+      </div>
+    `;
+  }
+
+  private updateCounter(): void {
+    this.counter.set(this.counter.get() + 1);
+    console.log(`Counter updated to: ${this.counter.get()}`);
+  }
+
+  private async loadData(): Promise<void> {
+    try {
+      const data = await this.apiService.fetchData('users');
+      console.log('Loaded data:', data);
+    } catch (error) {
+      console.error('Failed to load data:', error);
+    }
+  }
 }
+
+// Example App Component
+@Component({
+  selector: 'app-root',
+  template: `
+    <div class="app">
+      <header>
+        <nav>
+          <a href="/">Home</a>
+          <a href="/about">About</a>
+          <a href="/contact">Contact</a>
+        </nav>
+      </header>
+      <main>
+        <router-outlet></router-outlet>
+      </main>
+    </div>
+  `
+})
+export class AppComponent extends BaseComponent {
+  render(): string {
+    return `
+      <div class="app">
+        <header>
+          <nav>
+            <a href="/" onclick="router.navigate('/')">Home</a>
+            <a href="/about" onclick="router.navigate('/about')">About</a>
+            <a href="/contact" onclick="router.navigate('/contact')">Contact</a>
+          </nav>
+        </header>
+        <main>
+          <div id="router-outlet">
+            <!-- Router content will be rendered here -->
+          </div>
+        </main>
+      </div>
+    `;
+  }
+}
+
+// Application Bootstrap
+async function main(): Promise<void> {
+  console.log('Starting ONEDOT-JS Playground Application');
+
+  // Initialize framework
+  bootstrap();
+
+  // Setup Dependency Injection
+  const container = Container.getInstance();
+  container.register({
+    token: ApiService,
+    useClass: ApiService,
+    scope: 'singleton' as any
+  });
+
+  // Setup Routing
+  const router = Router.getInstance();
+  router.register([
+    { path: '/', component: 'HelloComponent' },
+    { path: '/about', component: 'AboutComponent' },
+    { path: '/contact', component: 'ContactComponent' }
+  ]);
+
+  // Create and render main app
+  const app = new AppComponent();
+  const appContainer = document.getElementById('app');
+
+  if (appContainer) {
+    appContainer.innerHTML = app.render();
+    console.log('Application rendered successfully');
+  } else {
+    console.error('App container not found');
+  }
+
+  // Start router
+  router.onRouteChange((context) => {
+    console.log('Route changed:', context.path);
+    // Update router outlet with appropriate component
+    updateRouterOutlet(context.path);
+  });
+
+  // Performance monitoring
+  const { Profiler } = await import('../../../packages/profiler/src');
+  const profiler = Profiler.getInstance();
+  profiler.enable();
+
+  // Measure app initialization
+  profiler.measure('app-init', () => {
+    console.log('App initialization measured');
+  });
+
+  console.log('ONEDOT-JS Playground is ready!');
+}
+
+function updateRouterOutlet(path: string): void {
+  const outlet = document.getElementById('router-outlet');
+  if (!outlet) return;
+
+  switch (path) {
+    case '/':
+      const apiService = Container.getInstance().get(ApiService);
+      const hello = new HelloComponent(apiService);
+      outlet.innerHTML = hello.render();
+      break;
+    case '/about':
+      outlet.innerHTML = '<h2>About ONEDOT-JS</h2><p>A powerful TypeScript framework</p>';
+      break;
+    case '/contact':
+      outlet.innerHTML = '<h2>Contact</h2><p>Get in touch with us</p>';
+      break;
+    default:
+      outlet.innerHTML = '<h2>404 - Page Not Found</h2>';
+  }
+}
+
+// Start the application
+if (typeof window !== 'undefined') {
+  // Browser environment
+  document.addEventListener('DOMContentLoaded', main);
+} else {
+  // Node.js environment
+  main().catch(console.error);
+}
+
+export { main };

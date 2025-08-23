@@ -1,22 +1,58 @@
 {
   "name": "@onedot/native",
   "version": "1.0.0",
-  "description": "ONEDOT-JS Native Renderer with Skia GPU Pipeline and JSI Bridge",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "description": "Native platform integration for ONEDOT-JS framework",
+  "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
     "build": "tsc",
-    "build:native": "cargo build --release",
-    "clean": "rimraf dist && cargo clean"
+    "test": "jest",
+    "lint": "eslint src --ext .ts,.js",
+    "clean": "rimraf dist",
+    "prebuild": "npm run clean",
+    "prepublishOnly": "npm run build"
   },
+  "keywords": [
+    "onedot",
+    "native",
+    "cross-platform",
+    "mobile",
+    "desktop"
+  ],
+  "author": "ONEDOT-JS Team",
+  "license": "MIT",
   "dependencies": {
-    "@onedot/core": "workspace:*"
+    "@onedot/core": "^1.0.0",
+    "@onedot/rendering": "^1.0.0",
+    "react-native": "^0.70.0",
+    "electron": "^22.0.0"
   },
   "devDependencies": {
-    "typescript": "^5.0.0"
+    "@types/node": "^18.0.0",
+    "@types/react-native": "^0.70.0",
+    "typescript": "^4.9.0",
+    "jest": "^29.0.0",
+    "@types/jest": "^29.0.0",
+    "ts-jest": "^29.0.0",
+    "eslint": "^8.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
+    "rimraf": "^3.0.0"
   },
-  "files": ["dist", "native", "Cargo.toml"],
-  "repository": "https://github.com/onedot-js/onedot",
-  "license": "MIT",
-  "keywords": ["native", "skia", "jsi", "gpu", "renderer", "mobile", "desktop"]
+  "peerDependencies": {
+    "@onedot/core": "^1.0.0",
+    "@onedot/rendering": "^1.0.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/onedot-js/onedot-js.git",
+    "directory": "packages/native"
+  },
+  "bugs": {
+    "url": "https://github.com/onedot-js/onedot-js/issues"
+  },
+  "homepage": "https://onedot-js.dev"
 }
