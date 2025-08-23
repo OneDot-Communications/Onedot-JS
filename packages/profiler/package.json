@@ -1,6 +1,6 @@
 {
   "name": "@onedot/profiler",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "Performance profiling tools for ONEDOT-JS framework",
   "main": "index.js",
   "types": "index.d.ts",
@@ -22,8 +22,8 @@
   "author": "ONEDOT-JS Team",
   "license": "MIT",
   "dependencies": {
-    "@onedot/core": "^1.0.14",
-    "@onedot/performance": "^1.0.14"
+    "@onedot/core": "^1.0.15",
+    "@onedot/performance": "^1.0.15"
   },
   "devDependencies": {
     "@types/jest": "^29.0.0",

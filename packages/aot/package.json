@@ -1,6 +1,6 @@
 {
   "name": "@onedot/aot",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "ONEDOT-JS Ahead-of-Time Compilation Package",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

@@ -1,6 +1,6 @@
 {
   "name": "@onedot/mobile",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "Mobile application support for ONEDOT-JS framework",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -18,7 +18,7 @@
     "deploy:ios": "cd ios && xcodebuild -workspace ONEDOT.xcworkspace -scheme ONEDOT -configuration Release archive"
   },
   "dependencies": {
-    "@onedot/core": "^1.0.14",
+    "@onedot/core": "^1.0.15",
     "react-native": "^0.71.0"
   },
   "devDependencies": {
