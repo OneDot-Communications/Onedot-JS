@@ -1,6 +1,6 @@
 {
   "name": "@onedot/performance",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "Performance optimization and monitoring tools for ONEDOT-JS framework",
   "main": "index.js",
   "types": "index.d.ts",
@@ -22,9 +22,9 @@
   "author": "ONEDOT-JS Team",
   "license": "MIT",
   "dependencies": {
-    "@onedot/core": "^1.0.12",
-    "@onedot/native": "^1.0.12",
-    "@onedot/rendering": "^1.0.12"
+    "@onedot/core": "^1.0.13",
+    "@onedot/native": "^1.0.13",
+    "@onedot/rendering": "^1.0.13"
   },
   "devDependencies": {
     "@types/jest": "^29.0.0",
@@ -53,5 +53,6 @@
   "bugs": {
     "url": "https://github.com/onedot-js/onedot-js/issues"
   },
-  "homepage": "https://onedot-js.dev"
+  "homepage": "https://onedot-js.dev",
+  "gitHead": "6819c4a3c456afc4c23a6735e310309fa0c1e7a7"
 }

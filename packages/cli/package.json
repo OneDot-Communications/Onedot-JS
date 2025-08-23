@@ -1,6 +1,6 @@
 {
   "name": "@onedot-js/cli",
-  "version": "1.12.0",
+  "version": "1.12.1",
   "description": "ONEDOT-JS Framework - Next-generation TypeScript framework",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -37,5 +37,6 @@
   },
   "dependencies": {
     "reflect-metadata": "^0.1.13"
-  }
+  },
+  "gitHead": "6819c4a3c456afc4c23a6735e310309fa0c1e7a7"
 }

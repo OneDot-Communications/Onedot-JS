@@ -1,6 +1,6 @@
 {
   "name": "onedot-social-media-example",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "Social media app example using ONEDOT-JS",
   "main": "dist/index.js",
   "scripts": {
@@ -16,11 +16,12 @@
   "author": "ONEDOT-JS Team",
   "license": "MIT",
   "dependencies": {
-    "@onedot/core": "^1.0.12",
-    "@onedot/web": "^1.0.12"
+    "@onedot/core": "^1.0.13",
+    "@onedot/web": "^1.0.13"
   },
   "devDependencies": {
-    "@onedot-js/bundler": "^1.0.12",
-    "@onedot-js/cli": "^1.12.0"
-  }
+    "@onedot-js/bundler": "^1.0.13",
+    "@onedot-js/cli": "^1.12.1"
+  },
+  "gitHead": "6819c4a3c456afc4c23a6735e310309fa0c1e7a7"
 }

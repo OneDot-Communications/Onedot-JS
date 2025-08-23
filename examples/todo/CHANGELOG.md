@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.13](https://github.com/OneDot-Communications/Onedot-JS/compare/onedot-todo-example@1.0.12...onedot-todo-example@1.0.13) (2025-08-23)
+
+**Note:** Version bump only for package onedot-todo-example
+
+
+
+
+
 ## 1.0.12 (2025-08-23)
 
 **Note:** Version bump only for package onedot-todo-example

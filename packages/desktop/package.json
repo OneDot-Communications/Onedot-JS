@@ -1,6 +1,6 @@
 {
   "name": "@onedot/desktop",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "Desktop application support for ONEDOT-JS framework",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -12,7 +12,7 @@
     "clean": "rimraf dist"
   },
   "dependencies": {
-    "@onedot/core": "^1.0.12",
+    "@onedot/core": "^1.0.13",
     "electron": "^25.0.0",
     "electron-builder": "^24.0.0"
   },
@@ -84,5 +84,6 @@
         }
       ]
     }
-  }
+  },
+  "gitHead": "6819c4a3c456afc4c23a6735e310309fa0c1e7a7"
 }

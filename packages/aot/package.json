@@ -1,6 +1,6 @@
 {
   "name": "@onedot/aot",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "ONEDOT-JS Ahead-of-Time Compilation Package",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -47,5 +47,6 @@
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
-  }
+  },
+  "gitHead": "6819c4a3c456afc4c23a6735e310309fa0c1e7a7"
 }
