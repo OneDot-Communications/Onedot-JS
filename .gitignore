@@ -1,0 +1,54 @@
+# Node
+node_modules/
+
+# Logs
+*.log
+lerna-debug.log
+
+# Build output
+dist/
+build/
+coverage/
+
+# TypeScript
+*.tsbuildinfo
+
+# VS Code
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Misc
+*.swp
+*.swo
+
+# Nx
+nx-report.html
+nx-*.log
+
+# Yarn
+.yarn/
+.yarnrc.yml
+
+# pnpm
+pnpm-lock.yaml
+
+# Others
+.idea/
+*.iml
+
+# Temporary
+.tmp/
+.temp/
+
+# Monorepo packages
+packages/*/node_modules/
+examples/*/node_modules/
+apps/*/node_modules/

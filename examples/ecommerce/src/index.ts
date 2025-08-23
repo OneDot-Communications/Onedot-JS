@@ -1,5 +1,5 @@
-import { Component, State, useEffect, computed } from '@onedot/core';
-import { render, Router, Route } from '@onedot/web';
+import { Component, computed, State } from '@onedot/core';
+import { default as render, default as Route, default as Router } from '@onedot/web';
 
 interface Product {
   id: number;
@@ -91,7 +91,8 @@ interface CartItem {
 export class EcommerceApp {
   @State() cart: CartItem[] = [];
 
-  @computed get cartItemCount(): number {
+  @computed
+  get cartItemCount(): number {
     return this.cart.reduce((count, item) => count + item.quantity, 0);
   }
 
@@ -159,7 +160,7 @@ export class EcommerceApp {
             <div class="product-card">
               <img src="{{product.image}}" alt="{{product.name}}" />
               <h3>{{product.name}}</h3>
-              <p class="price">${{product.price.toFixed(2)}}</p>
+              <p class="price">{{product.price.toFixed(2)}}</p>
               <button @click="addToCart(product)">Add to Cart</button>
             </div>
           {{/each}}
@@ -307,7 +308,7 @@ export class HomePage {
           <div class="product-card">
             <img src="{{product.image}}" alt="{{product.name}}" />
             <h3>{{product.name}}</h3>
-            <p class="price">${{product.price.toFixed(2)}}</p>
+            <p class="price">{{product.price.toFixed(2)}}</p>
             <button @click="addToCart(product)">Add to Cart</button>
           </div>
         {{/each}}
@@ -451,7 +452,8 @@ export class ProductsPage {
   @State() selectedCategory: string = '';
   @State() sortBy: string = 'name';
 
-  @computed get categories(): string[] {
+  @computed
+  get categories(): string[] {
     const cats = this.products.map(p => p.category);
     return [...new Set(cats)];
   }
@@ -513,7 +515,7 @@ export class ProductsPage {
               <img src="{{item.product.image}}" alt="{{item.product.name}}" />
               <div class="item-details">
                 <h3>{{item.product.name}}</h3>
-                <p class="price">${{item.product.price.toFixed(2)}} each</p>
+                <p class="price">{{item.product.price.toFixed(2)}} each</p>
               </div>
               <div class="item-quantity">
                 <button @click="decreaseQuantity(item.product.id)">-</button>
@@ -521,7 +523,7 @@ export class ProductsPage {
                 <button @click="increaseQuantity(item.product.id)">+</button>
               </div>
               <div class="item-total">
-                ${{(item.product.price * item.quantity).toFixed(2)}}
+                {{(item.product.price * item.quantity).toFixed(2)}}
               </div>
               <button class="remove-btn" @click="removeItem(item.product.id)">Remove</button>
             </div>
@@ -531,19 +533,19 @@ export class ProductsPage {
         <div class="cart-summary">
           <div class="summary-row">
             <span>Subtotal:</span>
-            <span>${{subtotal.toFixed(2)}}</span>
+            <span>{{subtotal.toFixed(2)}}</span>
           </div>
           <div class="summary-row">
             <span>Shipping:</span>
-            <span>${{shipping.toFixed(2)}}</span>
+            <span>{{shipping.toFixed(2)}}</span>
           </div>
           <div class="summary-row">
             <span>Tax:</span>
-            <span>${{tax.toFixed(2)}}</span>
+            <span>{{tax.toFixed(2)}}</span>
           </div>
           <div class="summary-row total">
             <span>Total:</span>
-            <span>${{total.toFixed(2)}}</span>
+            <span>{{total.toFixed(2)}}</span>
           </div>
 
           <button class="checkout-btn" @click="checkout">Proceed to Checkout</button>
@@ -695,19 +697,23 @@ export class ProductsPage {
 export class CartPage {
   @State() cartItems: CartItem[] = [];
 
-  @computed get subtotal(): number {
+  @computed
+  get subtotal(): number {
     return this.cartItems.reduce((sum, item) => sum + item.product.price * item.quantity, 0);
   }
 
-  @computed get shipping(): number {
+  @computed
+  get shipping(): number {
     return this.subtotal > 50 ? 0 : 5.99;
   }
 
-  @computed get tax(): number {
+  @computed
+  get tax(): number {
     return this.subtotal * 0.08;
   }
 
-  @computed get total(): number {
+  @computed
+  get total(): number {
     return this.subtotal + this.shipping + this.tax;
   }
 

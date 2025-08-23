@@ -180,7 +180,7 @@ export class PerformanceManager {
 }
 
 // Export the PerformanceManager class
-export { PerformanceManager };
+
 
 // Export utility functions
   export * from './utils';

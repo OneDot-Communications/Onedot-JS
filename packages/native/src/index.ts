@@ -5,7 +5,7 @@
  * including native widget mapping, JSI bridge, and rendering system integration.
  */
 
-import { Renderer } from '@onedot/rendering';
+import Renderer from '@onedot/rendering';
 import { EventEmitter } from 'events';
 
 // Import platform-specific implementations
@@ -38,7 +38,7 @@ export class NativePlatformManager extends EventEmitter {
   private currentPlatform: NativePlatform;
   private platformImpl: any;
   private bridge: NativeBridge;
-  private renderer: Renderer;
+  private renderer: any; // TODO: Refine type for Renderer
   private widgetRegistry: Map<string, NativeWidget> = new Map();
 
   private constructor() {
@@ -198,7 +198,7 @@ export class NativePlatformManager extends EventEmitter {
    * Get the renderer
    */
   public getRenderer(): Renderer {
-    return this.renderer;
+  return this.renderer;
   }
 
   /**
@@ -306,7 +306,7 @@ export class NativePlatformManager extends EventEmitter {
 }
 
 // Export the NativePlatformManager class
-export { NativePlatformManager };
+
 
 // Export utility functions
   export { utils };
@@ -325,4 +325,4 @@ export type {
 } from './types';
 
 // Export a default instance of the NativePlatformManager
-export default NativePlatformManager.getInstance(); 
+export default NativePlatformManager.getInstance();

@@ -474,7 +474,7 @@ export class WebManager extends EventEmitter {
 }
 
 // Export the WebManager class
-export { WebManager };
+
 
 // Export utility functions
   export * from './utils';

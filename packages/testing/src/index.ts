@@ -5,7 +5,7 @@
  * including test discovery, execution, and reporting.
  */
 
-import { RuntimeManager } from '@onedot/runtime';
+import RuntimeManager from '@onedot/runtime';
 import { EventEmitter } from 'events';
 
 // Import modules
@@ -32,7 +32,7 @@ export class TestManager extends EventEmitter {
   private unitTester: UnitTester;
   private integrationTester: IntegrationTester;
   private e2eTester: E2ETester;
-  private runtimeManager: RuntimeManager;
+  private runtimeManager: typeof RuntimeManager;
   private enabled: boolean = true;
   private reporters: TestReporter[] = [];
   private hooks: Map<string, TestHook[]> = new Map();
@@ -51,7 +51,7 @@ export class TestManager extends EventEmitter {
     this.unitTester = new UnitTester(this.config);
     this.integrationTester = new IntegrationTester(this.config);
     this.e2eTester = new E2ETester(this.config);
-    this.runtimeManager = RuntimeManager.getInstance();
+  this.runtimeManager = RuntimeManager;
 
     this.initialize();
   }
@@ -170,7 +170,7 @@ export class TestManager extends EventEmitter {
   /**
    * Get the runtime manager
    */
-  public getRuntimeManager(): RuntimeManager {
+  public getRuntimeManager(): typeof RuntimeManager {
     return this.runtimeManager;
   }
 
@@ -448,7 +448,7 @@ export class TestManager extends EventEmitter {
 }
 
 // Export the TestManager class
-export { TestManager };
+
 
 // Export utility functions
   export * from './utils';

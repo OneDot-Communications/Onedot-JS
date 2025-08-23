@@ -181,7 +181,7 @@ export class PluginSystem {
 }
 
 // Export the PluginSystem class
-export { PluginSystem };
+
 
 // Export utility functions
   export * from './utils';

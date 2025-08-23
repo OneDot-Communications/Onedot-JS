@@ -610,7 +610,7 @@ export class Profiler extends EventEmitter {
 }
 
 // Export the Profiler class
-export { Profiler };
+
 
 // Export utility functions
   export * from './utils';

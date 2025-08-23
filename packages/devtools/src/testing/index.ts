@@ -1,4 +1,3 @@
-import { OneDot } from '@onedot/core';
 
 export interface TestingOptions {
   enabled?: boolean;
@@ -147,55 +146,55 @@ export class Testing {
 
   private setupTestEnvironment(): void {
     // Set up global test functions
-    (global as any).describe = (name: string, fn: Function) => {
+    (globalThis as any).describe = (name: string, fn: Function) => {
       return this.describe(name, fn);
     };
 
-    (global as any).it = (name: string, fn: Function, timeout?: number) => {
+    (globalThis as any).it = (name: string, fn: Function, timeout?: number) => {
       return this.it(name, fn, timeout);
     };
 
-    (global as any).test = (name: string, fn: Function, timeout?: number) => {
+    (globalThis as any).test = (name: string, fn: Function, timeout?: number) => {
       return this.it(name, fn, timeout);
     };
 
-    (global as any).beforeEach = (fn: Function) => {
+    (globalThis as any).beforeEach = (fn: Function) => {
       return this.beforeEach(fn);
     };
 
-    (global as any).afterEach = (fn: Function) => {
+    (globalThis as any).afterEach = (fn: Function) => {
       return this.afterEach(fn);
     };
 
-    (global as any).beforeAll = (fn: Function) => {
+    (globalThis as any).beforeAll = (fn: Function) => {
       return this.beforeAll(fn);
     };
 
-    (global as any).afterAll = (fn: Function) => {
+    (globalThis as any).afterAll = (fn: Function) => {
       return this.afterAll(fn);
     };
 
-    (global as any).expect = (actual: any) => {
+    (globalThis as any).expect = (actual: any) => {
       return this.expect(actual);
     };
 
     // Set up global test variables
-    (global as any).__ONEDOT_TESTING__ = true;
+    (globalThis as any).__ONEDOT_TESTING__ = true;
   }
 
   private cleanupTestEnvironment(): void {
     // Clean up global test functions
-    delete (global as any).describe;
-    delete (global as any).it;
-    delete (global as any).test;
-    delete (global as any).beforeEach;
-    delete (global as any).afterEach;
-    delete (global as any).beforeAll;
-    delete (global as any).afterAll;
-    delete (global as any).expect;
+  delete (globalThis as any).describe;
+  delete (globalThis as any).it;
+  delete (globalThis as any).test;
+  delete (globalThis as any).beforeEach;
+  delete (globalThis as any).afterEach;
+  delete (globalThis as any).beforeAll;
+  delete (globalThis as any).afterAll;
+  delete (globalThis as any).expect;
 
-    // Clean up global test variables
-    delete (global as any).__ONEDOT_TESTING__;
+  // Clean up global test variables
+  delete (globalThis as any).__ONEDOT_TESTING__;
   }
 
   private setupCoverageCollection(): void {
@@ -269,8 +268,11 @@ export class Testing {
 
     try {
       // Load test file
-      delete require.cache[require.resolve(testPath)];
-      require(testPath);
+      // @ts-ignore
+      if ((globalThis as any).require) {
+        delete (globalThis as any).require.cache[(globalThis as any).require.resolve(testPath)];
+        (globalThis as any).require(testPath);
+      }
 
       // Run beforeAll hooks
       await this.runHooks('beforeAll');
@@ -325,7 +327,7 @@ export class Testing {
       // Run test
       if (fn.length > 0) {
         // Async test
-        return new Promise((resolve, reject) => {
+  return new Promise<void>((resolve, reject) => {
           const done = (error?: any) => {
             if (error) {
               this.handleTestFailure(error);
@@ -517,8 +519,8 @@ export class Testing {
 
         if (expected) {
           if (expected instanceof RegExp) {
-            if (!expected.test(thrown.message)) {
-              throw new Error(`Expected error message to match ${expected}, but got ${thrown.message}`);
+            if (!expected.test((thrown as Error).message)) {
+              throw new Error(`Expected error message to match ${expected}, but got ${(thrown as Error).message}`);
             }
           } else if (typeof expected === 'function' && thrown instanceof expected) {
             // Error type matches
@@ -768,7 +770,7 @@ export class Testing {
     html += `    <p>Passed: ${totalPasses}</p>\n`;
     html += `    <p>Failed: ${totalFailures}</p>\n`;
     html += `    <p>Pending: ${totalPending}</p>\n`;
-    html += `    <p>Duration: ${totalDuration}ms</p>\n';
+  html += `    <p>Duration: ${totalDuration}ms</p>\n`;
     html += '  </div>\n';
 
     // Add test results

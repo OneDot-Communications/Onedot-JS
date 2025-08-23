@@ -194,4 +194,4 @@ export const PerformanceUtils = {
 };
 
 // Export all utility modules
-export { PerformanceUtils };
+

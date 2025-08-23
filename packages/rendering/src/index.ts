@@ -447,7 +447,7 @@ export class RendererManager extends EventEmitter {
 }
 
 // Export the RendererManager class
-export { RendererManager };
+
 
 // Export utility functions
   export * from './utils';
